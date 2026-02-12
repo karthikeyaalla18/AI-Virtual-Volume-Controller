@@ -1,0 +1,25 @@
+Overview
+This project is an AI-driven Virtual Volume Controller system that allows users to control macOS system volume through real-time hand gestures. By leveraging Computer Vision, the application transforms a standard webcam into a touchless interface, offering a hygienic and futuristic alternative to physical hardware controls.
+
+Technical Implementation
+The application architecture follows a three-step pipeline:
+
+Vision Processing: Using OpenCV, the system captures live video frames, converting them to RGB and applying a horizontal flip to create an intuitive mirror-like user interface.
+
+Hand Tracking (The AI Core): The system utilizes the Google MediaPipe framework to detect and track 21 3D hand landmarks. It specifically monitors Landmark 4 (Thumb Tip) and Landmark 8 (Index Finger Tip).
+
+Mathematical Logic: The system calculates the Euclidean Distance between these two points. Using Linear Interpolation (np.interp), this raw pixel distance is mapped to a system volume range of 0% to 100%.
+
+Key Features
+Low Latency: Optimized for real-time performance with high FPS.
+
+macOS Integration: Uses AppleScript (osascript) to interface directly with the macOS Core Audio layer, bypassing the need for Windows-only libraries like pycaw.
+
+Visual HUD: Provides a real-time on-screen display (Heads-Up Display) showing a dynamic volume bar and percentage.
+
+Use Cases
+Sterile Environments: Touchless control for medical professionals.
+
+Accessibility: Alternative input for users with limited motor skills.
+
+Smart Automation: Non-tactile control for media and smart-home dashboards.
